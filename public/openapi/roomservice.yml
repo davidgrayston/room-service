@@ -1,0 +1,89 @@
+openapi: "3.0.0"
+info:
+  version: 1.0.0
+  title: Room Service
+  license:
+    name: MIT
+servers:
+  - url: http://localhost:8080/api
+paths:
+  /room/hoover:
+    post:
+      summary: Hoover a room
+      operationId: hooverRoom
+      requestBody:
+        description: The room dimensions, the locations of the dirt patches, the hoover location and the driving instructions
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                roomSize:
+                  $ref: "#/components/schemas/Coordinates"
+                coords:
+                  $ref: "#/components/schemas/Coordinates"
+                patches:
+                  type: array
+                  items:
+                    $ref: "#/components/schemas/Coordinates"
+                instructions:
+                  type: string
+              example:
+                roomSize:
+                  - 5
+                  - 5
+                coords:
+                  - 1
+                  - 2
+                patches:
+                  -
+                    - 1
+                    - 0
+                  -
+                    - 2
+                    - 2
+                  -
+                    - 2
+                    - 3
+                instructions: "NNESEESWNWW"
+      responses:
+        '201':
+          description: The final hoover position (X, Y) and number of patches of dirt the robot cleaned up
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  coords:
+                    $ref: "#/components/schemas/Coordinates"
+                  patches:
+                    type: integer
+              example:
+                coords:
+                  - 1
+                  - 3
+                patches: 1
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+components:
+  schemas:
+    Coordinates:
+      type: array
+      items:
+        type: integer
+        minItems: 2
+        maxItems: 2
+    Error:
+      required:
+        - code
+        - message
+      properties:
+        code:
+          type: integer
+          format: int32
+        message:
+          type: string
