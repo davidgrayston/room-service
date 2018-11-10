@@ -12,6 +12,9 @@ services:
     environment:
       - "DB_PORT=3306"
       - "DB_HOST=database"
+      - "DB_DATABASE=roomservice"
+      - "DB_USERNAME=roomservice"
+      - "DB_PASSWORD=secret"
 
   # The Web Server
   web:
@@ -26,12 +29,12 @@ services:
 
   # The Database
   database:
-    image: mysql:5.6
+    image: mariadb:10.3.10-bionic
     volumes:
       - dbdata:/var/lib/mysql
     environment:
-      - "MYSQL_DATABASE=homestead"
-      - "MYSQL_USER=homestead"
+      - "MYSQL_DATABASE=roomservice"
+      - "MYSQL_USER=roomservice"
       - "MYSQL_PASSWORD=secret"
       - "MYSQL_ROOT_PASSWORD=secret"
     ports:
