@@ -4,9 +4,12 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\ApiRequest;
+use App\RoomService\Room;
+use App\RoomService\Hoover;
 
 class RoomController extends Controller
 {
+
     /**
      * Hoover a room defined in the request.
      *
@@ -16,12 +19,23 @@ class RoomController extends Controller
      */
     public function hoover(Request $request)
     {
-        $roomSize = $request->json()->get('roomSize');
-        $coords = $request->json()->get('coords');
-        $patches = $request->json()->get('patches');
-        $instructions = $request->json()->get('instructions');
+        $json = $request->json();
 
-        $response = [$roomSize, $coords, $patches, $instructions];
+        $room = new Room($json->get('roomSize'));
+        $room->setPatches($json->get('patches'));
+
+        $hoover = new Hoover();
+        $hoover
+          ->setRoom($room)
+          ->setPosition($json->get('coords'))
+          ->setInstructions($json->get('instructions'))
+          ->run();
+
+        // Construct response.
+        $response = [
+          'coords' => $hoover->getPosition(),
+          'patches' => count($room->getPatches()),
+        ];
 
         // Store the request input/output.
         ApiRequest::create([
