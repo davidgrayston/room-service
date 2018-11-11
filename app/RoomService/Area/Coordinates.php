@@ -1,6 +1,6 @@
 <?php
 
-namespace App\RoomService;
+namespace App\RoomService\Area;
 
 use App\Exceptions\RoomServiceValidation;
 
@@ -8,12 +8,12 @@ class Coordinates implements \JsonSerializable
 {
 
     /**
-     * @var array x/y coordindates.
+     * @var array x/y coordinates.
      */
     protected $coords = [];
 
     /**
-     * Room constructor.
+     * Coordinates constructor.
      *
      * @param array $coords
      */
@@ -28,7 +28,7 @@ class Coordinates implements \JsonSerializable
      *
      * @param array $coords
      *
-     * @throws \InvalidArgumentException
+     * @throws \App\Exceptions\RoomServiceValidation
      */
     protected function validateCoordinatesFormat(array $coords)
     {

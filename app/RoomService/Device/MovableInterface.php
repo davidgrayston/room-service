@@ -1,8 +1,10 @@
 <?php
 
-namespace App\RoomService;
+namespace App\RoomService\Device;
 
-interface MovableItemInterface
+use App\RoomService\Area\AreaInterface;
+
+interface MovableInterface
 {
 
     /**
@@ -16,20 +18,20 @@ interface MovableItemInterface
     public function setInstructions(string $instructions);
 
     /**
-     * Sets the room that this movable item is in.
+     * Sets the area that this movable item is in.
      *
      * @return $this
      */
-    public function setRoom(RoomInterface $room);
+    public function setArea(AreaInterface $area);
 
     /**
-     * Return room that this movable item is in.
+     * Return area that this movable item is in.
      *
-     * @return \App\RoomService\RoomInterface
+     * @return \App\RoomService\Area\AreaInterface
      *
      * @throws \LogicException
      */
-    public function getRoom();
+    public function getArea();
 
     /**
      * Runs the instructions.
@@ -39,7 +41,7 @@ interface MovableItemInterface
     public function run();
 
     /**
-     * Sets the position of the item within the room.
+     * Sets the position of the item within the area.
      *
      * @param array $coords
      *   The coordinates of the item.
@@ -54,7 +56,7 @@ interface MovableItemInterface
     /**
      * Returns the item coordinates.
      *
-     * @return \App\RoomService\Coordinates
+     * @return \App\RoomService\Area\Coordinates
      */
     public function getPosition();
 }

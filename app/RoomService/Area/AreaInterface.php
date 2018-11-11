@@ -1,8 +1,8 @@
 <?php
 
-namespace App\RoomService;
+namespace App\RoomService\Area;
 
-interface RoomInterface
+interface AreaInterface
 {
 
     /**
@@ -15,37 +15,37 @@ interface RoomInterface
     /**
      * Return array of dirt patches.
      *
-     * @return \App\RoomService\Coordinates[]
+     * @return \App\RoomService\Area\Coordinates[]
      */
     public function getPatches();
 
     /**
-     * Adds a dirt patch to the room.
+     * Adds a dirt patch to the area.
      *
-     * @param \App\RoomService\Coordinates $coords
+     * @param \App\RoomService\Area\Coordinates $coords
      */
     public function addPatch(Coordinates $coords);
 
     /**
      * Cleans patch at the specified coordinates.
      *
-     * @param \App\RoomService\Coordinates $coords
+     * @param \App\RoomService\Area\Coordinates $coords
      */
     public function cleanPatch(Coordinates $coords);
 
     /**
-     * Check if provided coordinates are valid for the room.
+     * Check if provided coordinates are valid for the area.
      *
-     * @param \App\RoomService\Coordinates $coords
+     * @param \App\RoomService\Area\Coordinates $coords
      *
      * @return bool
      */
     public function validateCoordinates(Coordinates $coords);
 
     /**
-     * Asserts the provided coordinates for this room are valid.
+     * Asserts the provided coordinates for this area are valid.
      *
-     * @param \App\RoomService\Coordinates $coords
+     * @param \App\RoomService\Area\Coordinates $coords
      *
      * @throws \App\Exceptions\RoomServiceValidation
      */

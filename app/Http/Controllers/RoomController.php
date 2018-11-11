@@ -5,8 +5,8 @@ namespace App\Http\Controllers;
 use App\Exceptions\RoomServiceValidation;
 use Illuminate\Http\Request;
 use App\ApiRequest;
-use App\RoomService\Room;
-use App\RoomService\Hoover;
+use App\RoomService\Area\Area;
+use App\RoomService\Device\Hoover;
 
 class RoomController extends Controller
 {
@@ -23,12 +23,12 @@ class RoomController extends Controller
         $json = $request->json();
 
         try {
-            $room = new Room($json->get('roomSize'));
-            $room->setPatches($json->get('patches'));
+            $area = new Area($json->get('roomSize'));
+            $area->setPatches($json->get('patches'));
 
             $hoover = new Hoover();
             $hoover
-              ->setRoom($room)
+              ->setArea($area)
               ->setPosition($json->get('coords'))
               ->setInstructions($json->get('instructions'))
               ->run();
@@ -37,7 +37,7 @@ class RoomController extends Controller
             $status = 201;
             $response = [
               'coords' => $hoover->getPosition(),
-              'patches' => count($room->getPatches()),
+              'patches' => count($area->getPatches()),
             ];
         }
         catch (RoomServiceValidation $e) {

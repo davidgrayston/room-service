@@ -1,30 +1,30 @@
 <?php
 
-namespace App\RoomService;
+namespace App\RoomService\Area;
 
 use App\Exceptions\RoomServiceValidation;
 
-class Room implements RoomInterface
+class Area implements AreaInterface
 {
 
     /**
-     * @var \App\RoomService\Coordinates
+     * @var \App\RoomService\Area\Coordinates
      */
     protected $size;
 
     /**
-     * @var \App\RoomService\Coordinates[] registry of dirt patches.
+     * @var \App\RoomService\Area\Coordinates[] registry of dirt patches.
      */
     protected $patches = [];
 
     /**
-     * Room constructor.
+     * Area constructor.
      *
-     * @param array $room_size
+     * @param array $size
      */
-    public function __construct(array $room_size)
+    public function __construct(array $size)
     {
-        $this->size = new Coordinates($room_size);
+        $this->size = new Coordinates($size);
     }
 
     /**
@@ -68,7 +68,7 @@ class Room implements RoomInterface
      */
     public function validateCoordinates(Coordinates $coords)
     {
-        // Check that the coordinates are within the bounds of the room.
+        // Check that the coordinates are within the bounds of the area.
         $valid = true;
         foreach (['x', 'y'] as $c) {
             if ($coords->{$c}() >= $this->size->{$c}() || $coords->{$c}() < 0) {
@@ -83,9 +83,9 @@ class Room implements RoomInterface
      */
     public function assertValidCoordinates(Coordinates $coords)
     {
-        // Check that the coordinates are within the bounds of the room.
+        // Check that the coordinates are within the bounds of the area.
         if (!$this->validateCoordinates($coords)) {
-            throw new RoomServiceValidation(sprintf('Coordinates [%s] are not valid for room [%s]',
+            throw new RoomServiceValidation(sprintf('Coordinates [%s] are not valid for area [%s]',
               $coords,
               $this->size
             ));

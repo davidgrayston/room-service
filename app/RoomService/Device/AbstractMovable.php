@@ -1,21 +1,25 @@
 <?php
 
-namespace App\RoomService;
+namespace App\RoomService\Device;
 
-class Hoover implements MovableItemInterface
+use App\RoomService\Area\AreaInterface;
+use App\RoomService\Area\Coordinates;
+
+abstract class AbstractMovable implements MovableInterface
 {
+
     /**
      * @var array
      */
     protected $instructions = [];
 
     /**
-     * @var RoomInterface
+     * @var AreaInterface
      */
-    protected $room;
+    protected $area;
 
     /**
-     * @var \App\RoomService\Coordinates
+     * @var \App\RoomService\Area\Coordinates
      */
     protected $coords;
 
@@ -57,10 +61,9 @@ class Hoover implements MovableItemInterface
                     break;
             }
 
-            // Check that the room coordinates are valid before moving hoover / cleaning.
-            if ($this->room->validateCoordinates($new_coords)) {
+            // Check that the area coordinates are valid before moving hoover / cleaning.
+            if ($this->getArea()->validateCoordinates($new_coords)) {
                 $this->coords = $new_coords;
-                $this->room->cleanPatch($this->coords);
             }
         }
         return $this;
@@ -69,11 +72,11 @@ class Hoover implements MovableItemInterface
     /**
      * @inheritDoc
      */
-    public function setRoom(RoomInterface $room)
+    public function setArea(AreaInterface $area)
     {
-        $this->room = $room;
+        $this->area = $area;
 
-        // Unset existing coordinates when the room changes.
+        // Unset existing coordinates when the area changes.
         unset($this->coords);
 
         return $this;
@@ -82,12 +85,12 @@ class Hoover implements MovableItemInterface
     /**
      * @inheritDoc
      */
-    public function getRoom()
+    public function getArea()
     {
-        if (isset($this->room)) {
-            return $this->room;
+        if (isset($this->area)) {
+            return $this->area;
         }
-        throw new \LogicException('Item does not have a room set.');
+        throw new \LogicException('Item does not have an area set.');
     }
 
     /**
@@ -95,9 +98,9 @@ class Hoover implements MovableItemInterface
      */
     public function setPosition(array $coords)
     {
-        // Assert that the coordinates are valid for the the room.
+        // Assert that the coordinates are valid for the the area.
         $new_coords = new Coordinates($coords);
-        $this->getRoom()->assertValidCoordinates($new_coords);
+        $this->getArea()->assertValidCoordinates($new_coords);
 
         // Set the coordinates.
         $this->coords = $new_coords;
@@ -112,4 +115,10 @@ class Hoover implements MovableItemInterface
     {
         return $this->coords;
     }
+
+    /**
+     * Device classes should implement this method to perform operations when
+     * it is moved.
+     */
+    abstract protected function onMove();
 }
