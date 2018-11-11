@@ -1,0 +1,54 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "title": "Hoover Room Request Schema",
+  "required": [
+    "roomSize",
+    "coords",
+    "patches",
+    "instructions"
+  ],
+  "properties": {
+    "roomSize": {
+      "$ref": "#/definitions/coordinates"
+    },
+    "coords": {
+      "$ref": "#/definitions/coordinates"
+    },
+    "patches": {
+      "$id": "#/properties/patches",
+      "type": "array",
+      "title": "The Patches Schema",
+      "items": {
+        "$ref": "#/definitions/coordinates"
+      }
+    },
+    "instructions": {
+      "$id": "#/properties/instructions",
+      "type": "string",
+      "title": "The Instructions Schema",
+      "default": "",
+      "examples": [
+        "NNESEESWNWW"
+      ],
+      "pattern": "^(.*)$"
+    }
+  },
+  "definitions": {
+    "coordinates": {
+      "type": "array",
+      "minItems": 2,
+      "maxItems": 2,
+      "title": "The Coordinates Schema",
+      "items": {
+        "type": "integer",
+        "title": "The Coordinate Schema",
+        "default": 0,
+        "examples": [
+          1,
+          0
+        ]
+      }
+    }
+  }
+}

@@ -17,4 +17,4 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::post('room/hoover', 'RoomController@hoover');
+Route::middleware('room.hoover.validate')->post('room/hoover', 'RoomController@hoover');
