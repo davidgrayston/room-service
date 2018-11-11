@@ -6,5 +6,5 @@ use Illuminate\Database\Eloquent\Model;
 
 class ApiRequest extends Model
 {
-    protected $fillable = ['endpoint', 'input', 'output'];
+    protected $fillable = ['endpoint', 'input', 'output', 'status'];
 }

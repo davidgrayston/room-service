@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Exceptions\RoomServiceValidation;
 use Illuminate\Http\Request;
 use App\ApiRequest;
 use App\RoomService\Room;
@@ -21,29 +22,39 @@ class RoomController extends Controller
     {
         $json = $request->json();
 
-        $room = new Room($json->get('roomSize'));
-        $room->setPatches($json->get('patches'));
+        try {
+            $room = new Room($json->get('roomSize'));
+            $room->setPatches($json->get('patches'));
 
-        $hoover = new Hoover();
-        $hoover
-          ->setRoom($room)
-          ->setPosition($json->get('coords'))
-          ->setInstructions($json->get('instructions'))
-          ->run();
+            $hoover = new Hoover();
+            $hoover
+              ->setRoom($room)
+              ->setPosition($json->get('coords'))
+              ->setInstructions($json->get('instructions'))
+              ->run();
 
-        // Construct response.
-        $response = [
-          'coords' => $hoover->getPosition(),
-          'patches' => count($room->getPatches()),
-        ];
+            // Construct response.
+            $status = 201;
+            $response = [
+              'coords' => $hoover->getPosition(),
+              'patches' => count($room->getPatches()),
+            ];
+        }
+        catch (RoomServiceValidation $e) {
+            $status = 400;
+            $response = [
+              'message' => $e->getMessage(),
+            ];
+        }
 
         // Store the request input/output.
         ApiRequest::create([
           'endpoint' => $request->getUri(),
-          'input' => json_encode($request->json()->all()),
+          'input' => json_encode($json->all()),
           'output' => json_encode($response),
+          'status' => $status,
         ]);
 
-        return response()->json($response, 201);
+        return response()->json($response, $status);
     }
 }

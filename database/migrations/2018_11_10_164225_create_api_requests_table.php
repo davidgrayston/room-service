@@ -18,6 +18,7 @@ class CreateApiRequestsTable extends Migration
             $table->string('endpoint');
             $table->json('input');
             $table->json('output');
+            $table->integer('status');
             $table->timestamps();
         });
     }
