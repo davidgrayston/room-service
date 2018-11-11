@@ -2,4 +2,4 @@
 
 namespace App\Exceptions;
 
-class RoomServiceValidation extends \InvalidArgumentException {}
+class RoomServiceValidation extends \Exception {}

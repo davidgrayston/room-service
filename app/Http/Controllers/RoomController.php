@@ -22,30 +22,22 @@ class RoomController extends Controller
     {
         $json = $request->json();
 
-        try {
-            $area = new Area($json->get('roomSize'));
-            $area->setPatches($json->get('patches'));
+        $area = new Area($json->get('roomSize'));
+        $area->setPatches($json->get('patches'));
 
-            $hoover = new Hoover();
-            $hoover
-              ->setArea($area)
-              ->setPosition($json->get('coords'))
-              ->setInstructions($json->get('instructions'))
-              ->run();
+        $hoover = new Hoover();
+        $hoover
+          ->setArea($area)
+          ->setPosition($json->get('coords'))
+          ->setInstructions($json->get('instructions'))
+          ->run();
 
-            // Construct response.
-            $status = 201;
-            $response = [
-              'coords' => $hoover->getPosition(),
-              'patches' => count($area->getPatches()),
-            ];
-        }
-        catch (RoomServiceValidation $e) {
-            $status = 400;
-            $response = [
-              'message' => $e->getMessage(),
-            ];
-        }
+        // Construct response.
+        $status = 201;
+        $response = [
+          'coords' => $hoover->getPosition(),
+          'patches' => count($area->getPatches()),
+        ];
 
         // Store the request input/output.
         ApiRequest::create([
