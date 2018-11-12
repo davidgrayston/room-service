@@ -14,3 +14,11 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/log', function () {
+    $api_requests = \App\ApiRequest::orderBy('created_at', 'desc')->get();
+
+    return view('log', [
+      'api_requests' => $api_requests
+    ]);
+});

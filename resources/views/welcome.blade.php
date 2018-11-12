@@ -2,7 +2,7 @@
 <html lang="{{ app()->getLocale() }}">
 <head>
     <meta charset="UTF-8">
-    <title>Room Service</title>
+    <title>Room Service - Swagger UI</title>
     <link rel="stylesheet" type="text/css" href="/swagger-ui-dist/swagger-ui.css" >
     <link rel="icon" type="image/png" href="/swagger-ui-dist/favicon-32x32.png" sizes="32x32" />
     <link rel="icon" type="image/png" href="/swagger-ui-dist/favicon-16x16.png" sizes="16x16" />
@@ -27,9 +27,11 @@
             background: #fafafa;
         }
     </style>
+
 </head>
 
 <body>
+
 <div id="swagger-ui"></div>
 
 <script src="/swagger-ui-dist/swagger-ui-bundle.js"> </script>
