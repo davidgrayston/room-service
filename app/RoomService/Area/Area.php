@@ -60,7 +60,7 @@ class Area implements AreaInterface
     public function cleanPatch(Coordinates $coords)
     {
         $this->assertValidCoordinates($coords);
-        unset($this->patches[(string)$coords]);
+        unset($this->patches[(string) $coords]);
     }
 
     /**

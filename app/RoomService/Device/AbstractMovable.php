@@ -64,6 +64,7 @@ abstract class AbstractMovable implements MovableInterface
             // Check that the area coordinates are valid before moving hoover / cleaning.
             if ($this->getArea()->validateCoordinates($new_coords)) {
                 $this->coords = $new_coords;
+                $this->operate();
             }
         }
         return $this;
@@ -105,6 +106,9 @@ abstract class AbstractMovable implements MovableInterface
         // Set the coordinates.
         $this->coords = $new_coords;
 
+        // Perform operations.
+        $this->operate();
+
         return $this;
     }
 
@@ -120,5 +124,5 @@ abstract class AbstractMovable implements MovableInterface
      * Device classes should implement this method to perform operations when
      * it is moved.
      */
-    abstract protected function onMove();
+    abstract protected function operate();
 }

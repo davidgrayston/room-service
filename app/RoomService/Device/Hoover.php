@@ -8,7 +8,7 @@ class Hoover extends AbstractMovable
     /**
      * @inheritdoc
      */
-    protected function onMove()
+    protected function operate()
     {
         $this->getArea()->cleanPatch($this->getPosition());
     }
