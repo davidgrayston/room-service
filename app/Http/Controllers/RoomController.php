@@ -36,7 +36,7 @@ class RoomController extends Controller
         $status = 201;
         $response = [
           'coords' => $hoover->getPosition(),
-          'patches' => count($area->getPatches()),
+          'patches' => $area->getPatchesCleaned(),
         ];
 
         // Store the request input/output.

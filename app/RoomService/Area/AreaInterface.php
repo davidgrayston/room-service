@@ -20,6 +20,13 @@ interface AreaInterface
     public function getPatches();
 
     /**
+     * Return total patches cleaned.
+     *
+     * @return int
+     */
+    public function getPatchesCleaned();
+
+    /**
      * Adds a dirt patch to the area.
      *
      * @param \App\RoomService\Area\Coordinates $coords

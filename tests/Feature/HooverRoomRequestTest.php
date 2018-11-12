@@ -28,7 +28,7 @@ class HooverRoomRequestTest extends TestCase
         $response->assertStatus(201);
         $response->assertExactJson([
           'coords' => [1, 3],
-          'patches' => 2,
+          'patches' => 1,
         ]);
     }
 }

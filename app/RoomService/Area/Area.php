@@ -18,6 +18,11 @@ class Area implements AreaInterface
     protected $patches = [];
 
     /**
+     * @var \int count of patches cleaned.
+     */
+    protected $patchesCleaned = 0;
+
+    /**
      * Area constructor.
      *
      * @param array $size
@@ -50,6 +55,14 @@ class Area implements AreaInterface
     /**
      * @inheritdoc
      */
+    public function getPatchesCleaned()
+    {
+        return $this->patchesCleaned;
+    }
+
+    /**
+     * @inheritdoc
+     */
     public function addPatch(Coordinates $coords)
     {
         $this->assertValidCoordinates($coords);
@@ -62,7 +75,10 @@ class Area implements AreaInterface
     public function cleanPatch(Coordinates $coords)
     {
         $this->assertValidCoordinates($coords);
-        unset($this->patches[(string) $coords]);
+        if (isset($this->patches[(string) $coords])) {
+            $this->patchesCleaned++;
+            unset($this->patches[(string) $coords]);
+        }
     }
 
     /**
