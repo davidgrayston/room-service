@@ -50,8 +50,9 @@ Implementation Overview
 
 #### Application Code
 The classes that deal with moving the hoover around the room can be found in the [App\RoomService](./app/RoomService) namespace.
-- `App\RoomService\Area` deals with the room area and coordinates
-- `App\RoomService\Device` deals with the device being moved around the room
+
+- [App\RoomService\Area](./app/RoomService/Area) deals with the room area and coordinates
+- [App\RoomService\Device](./app/RoomService/Device) deals with the device being moved around the room
 
 #### Request Log
 All request inputs/outputs are logged using the [ApiRequest](./app/ApiRequest.php) model.
