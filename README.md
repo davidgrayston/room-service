@@ -60,12 +60,14 @@ All request inputs/outputs are logged using the [ApiRequest](./app/ApiRequest.ph
 The log can be viewed at <http://localhost:8080/log>
 
 ### Testing
-Tests can be found in the [tests](./tests/) directory
+Tests can be found in the [tests](./tests/) directory.
+
 - [HooverRoomRequestTest](./tests/Feature/HooverRoomRequestTest.php) tests the input/output of the API request.
 - [PHPUnit tests](./tests/Unit) cover the input/output of the application class methods.
 
 ### Docker
-Docker has been used to containerise the application:
+Docker has been used to containerise the application.
+
 - [Makefile](./Makefile) provides useful commands to install/start/stop/test
 - [Docker Compose](./docker-compose.yml) defines the [app](./app.dockerfile), [web](web.dockerfile) and 
   database services required to run the application 
