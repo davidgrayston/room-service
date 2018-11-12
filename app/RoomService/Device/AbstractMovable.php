@@ -9,7 +9,7 @@ abstract class AbstractMovable implements MovableInterface
 {
 
     /**
-     * @var array
+     * @var array Instructions for the movable device.
      */
     protected $instructions = [];
 
@@ -24,7 +24,7 @@ abstract class AbstractMovable implements MovableInterface
     protected $coords;
 
     /**
-     * @inheritDoc
+     * @inheritdoc
      */
     public function setInstructions(string $instructions)
     {
@@ -37,7 +37,7 @@ abstract class AbstractMovable implements MovableInterface
     }
 
     /**
-     * @inheritDoc
+     * @inheritdoc
      */
     public function run()
     {
@@ -71,7 +71,7 @@ abstract class AbstractMovable implements MovableInterface
     }
 
     /**
-     * @inheritDoc
+     * @inheritdoc
      */
     public function setArea(AreaInterface $area)
     {
@@ -84,7 +84,7 @@ abstract class AbstractMovable implements MovableInterface
     }
 
     /**
-     * @inheritDoc
+     * @inheritdoc
      */
     public function getArea()
     {
@@ -95,7 +95,7 @@ abstract class AbstractMovable implements MovableInterface
     }
 
     /**
-     * @inheritDoc
+     * @inheritdoc
      */
     public function setPosition(array $coords)
     {

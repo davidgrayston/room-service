@@ -75,14 +75,14 @@ class Area implements AreaInterface
     public function cleanPatch(Coordinates $coords)
     {
         $this->assertValidCoordinates($coords);
-        if (isset($this->patches[(string) $coords])) {
+        if (isset($this->patches[(string)$coords])) {
             $this->patchesCleaned++;
-            unset($this->patches[(string) $coords]);
+            unset($this->patches[(string)$coords]);
         }
     }
 
     /**
-     * @inheritDoc
+     * @inheritdoc
      */
     public function validateCoordinates(Coordinates $coords)
     {

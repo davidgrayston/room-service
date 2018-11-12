@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Exceptions\RoomServiceValidation;
 use Illuminate\Http\Request;
 use App\ApiRequest;
 use App\RoomService\Area\Area;
@@ -17,14 +16,17 @@ class RoomController extends Controller
      * @param \Illuminate\Http\Request $request
      *
      * @return \Illuminate\Http\JsonResponse
+     * @throws \App\Exceptions\RoomServiceValidation
      */
     public function hoover(Request $request)
     {
         $json = $request->json();
 
+        // Create area to be cleaned.
         $area = new Area($json->get('roomSize'));
         $area->setPatches($json->get('patches'));
 
+        // Create hoover to clean the area.
         $hoover = new Hoover();
         $hoover
           ->setArea($area)

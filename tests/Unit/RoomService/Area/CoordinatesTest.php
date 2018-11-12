@@ -13,6 +13,7 @@ use App\RoomService\Area\Coordinates;
  */
 class CoordinatesTest extends TestCase
 {
+
     /**
      * @covers ::goNorth
      * @covers ::goEast
@@ -58,6 +59,6 @@ class CoordinatesTest extends TestCase
     {
         $coords = new Coordinates([2, 4]);
         $this->assertEquals($coords, '2,4');
-        $this->assertSame((string) $coords, '2,4');
+        $this->assertSame((string)$coords, '2,4');
     }
 }

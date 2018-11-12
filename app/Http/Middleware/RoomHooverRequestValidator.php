@@ -12,7 +12,7 @@ class RoomHooverRequestValidator
     /**
      * Handle an incoming request.
      *
-     * @param $request
+     * @param \Illuminate\Http\Request $request
      * @param \Closure $next
      * @param null $guard
      *

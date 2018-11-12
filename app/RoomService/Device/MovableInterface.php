@@ -20,6 +20,8 @@ interface MovableInterface
     /**
      * Sets the area that this movable item is in.
      *
+     * @param \App\RoomService\Area\AreaInterface $area
+     *
      * @return $this
      */
     public function setArea(AreaInterface $area);
@@ -47,8 +49,6 @@ interface MovableInterface
      *   The coordinates of the item.
      *
      * @return $this
-     *
-     * @throws \LogicException
      * @throws \App\Exceptions\RoomServiceValidation
      */
     public function setPosition(array $coords);

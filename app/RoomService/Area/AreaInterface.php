@@ -8,7 +8,7 @@ interface AreaInterface
     /**
      * Registers array of dirt patches.
      *
-     * @param array $patch_coords
+     * @return mixed
      */
     public function setPatches(array $patch_coords);
 

@@ -107,7 +107,7 @@ class Coordinates implements \JsonSerializable
     }
 
     /**
-     * @inheritDoc
+     * @inheritdoc
      */
     public function jsonSerialize()
     {
