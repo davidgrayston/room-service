@@ -2,6 +2,11 @@
 
 Service that navigates an imaginary robotic hoover through an imaginary room.
 
+Requirements
+------------
+- [Docker](https://docs.docker.com/)
+- [Docker Compose](https://docs.docker.com/compose/)
+
 Installation
 -----------------------
 
