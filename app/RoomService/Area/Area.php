@@ -21,6 +21,8 @@ class Area implements AreaInterface
      * Area constructor.
      *
      * @param array $size
+     *
+     * @throws \App\Exceptions\RoomServiceValidation
      */
     public function __construct(array $size)
     {
