@@ -16,6 +16,8 @@ class Coordinates implements \JsonSerializable
      * Coordinates constructor.
      *
      * @param array $coords
+     *
+     * @throws \App\Exceptions\RoomServiceValidation
      */
     public function __construct(array $coords)
     {
