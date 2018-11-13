@@ -50,7 +50,7 @@ Implementation Overview
 - View the [OAS documentation](./public/openapi/roomservice.yml)
 
 ##### Endpoint
-- The `/room/hoover` endpoint is handled by the [controller](./app/Http/Controllers/RoomController.php)
+- The `/api/room/hoover` endpoint is handled by the [controller](./app/Http/Controllers/RoomController.php)
 - The JSON payload is validated against a [JSON Schema](./resources/jsonschema/room.hoover.request.json)
   by the [room.hoover.validate](./app/Http/Middleware/RoomHooverRequestValidator.php) middleware
 
@@ -77,3 +77,40 @@ Docker has been used to containerise the application.
 - [Makefile](./Makefile) provides useful commands to install/start/stop/test
 - [Docker Compose](./docker-compose.yml) defines the [app](./app.dockerfile), [web](web.dockerfile) and 
   database services required to run the application 
+
+Code Examples
+-------------
+
+### PHP
+
+```php
+$json_data = json_encode([
+  'roomSize' => [5, 5],
+  'coords' => [1, 2],
+  'patches' => [
+    [1, 0],
+    [2, 2],
+    [2, 3],
+  ],
+  'instructions' => 'NNESEESWNWW',
+]);
+
+$ch = curl_init('http://localhost:8080/api/room/hoover');
+curl_setopt($ch, CURLOPT_POST, 1);
+curl_setopt($ch, CURLOPT_POSTFIELDS, $json_data);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+curl_setopt($ch, CURLOPT_HTTPHEADER, [
+  'Accept: application/json',
+  'Content-Type: application/json'
+]);
+
+$result = curl_exec($ch);
+
+var_dump($result);
+```
+
+### curl
+
+```
+curl -X POST "http://localhost:8080/api/room/hoover" -H "accept: application/json" -H "Content-Type: application/json" -d "{\"roomSize\":[5,5],\"coords\":[1,2],\"patches\":[[1,0],[2,2],[2,3]],\"instructions\":\"NNESEESWNWW\"}"
+```
