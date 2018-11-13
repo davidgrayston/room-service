@@ -81,34 +81,6 @@ Docker has been used to containerise the application.
 Code Examples
 -------------
 
-### PHP (curl)
-
-```php
-$json_data = json_encode([
-  'roomSize' => [5, 5],
-  'coords' => [1, 2],
-  'patches' => [
-    [1, 0],
-    [2, 2],
-    [2, 3],
-  ],
-  'instructions' => 'NNESEESWNWW',
-]);
-
-$ch = curl_init('http://localhost:8080/api/room/hoover');
-curl_setopt($ch, CURLOPT_POST, 1);
-curl_setopt($ch, CURLOPT_POSTFIELDS, $json_data);
-curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-curl_setopt($ch, CURLOPT_HTTPHEADER, [
-  'Accept: application/json',
-  'Content-Type: application/json'
-]);
-
-$result = curl_exec($ch);
-
-var_dump($result);
-```
-
 ### PHP (Guzzle)
 
 ```php
