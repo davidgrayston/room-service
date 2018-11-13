@@ -81,7 +81,7 @@ Docker has been used to containerise the application.
 Code Examples
 -------------
 
-### PHP
+### PHP (curl)
 
 ```php
 $json_data = json_encode([
@@ -107,6 +107,32 @@ curl_setopt($ch, CURLOPT_HTTPHEADER, [
 $result = curl_exec($ch);
 
 var_dump($result);
+```
+
+### PHP (Guzzle)
+
+```php
+$json_data = [
+  'roomSize' => [5, 5],
+  'coords' => [1, 2],
+  'patches' => [
+    [1, 0],
+    [2, 2],
+    [2, 3],
+  ],
+  'instructions' => 'NNESEESWNWW',
+];
+
+$client = new GuzzleHttp\Client(['base_uri' => 'http://localhost:8080/api/']);
+
+$response = $client->request('POST', 'room/hoover', [
+  'json' => $json_data,
+  'headers' => [
+    'Accept' => 'application/json'
+  ]
+]);
+
+echo $response->getBody();
 ```
 
 ### curl
