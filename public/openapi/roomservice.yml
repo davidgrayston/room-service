@@ -11,6 +11,8 @@ paths:
     post:
       summary: Hoover a room
       operationId: hooverRoom
+      tags:
+        - Room
       requestBody:
         description: The room dimensions, the locations of the dirt patches, the hoover location and the driving instructions
         content:
