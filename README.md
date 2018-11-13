@@ -15,22 +15,23 @@ Install and run the application:
 make install
 ```
 
-Run the application after installation:
+### Useful Commands
+Running the application (after installation):
 ```
 make up
 ```
 
-Stop the application:
+Stopping the application:
 ```
 make down
 ```
 
-Run tests:
+Running tests:
 ```
 make test
 ```
 
-Update the project dependencies, e.g. composer
+Updating the project dependencies, e.g. composer
 ```
 make update
 ```
