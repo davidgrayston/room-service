@@ -29,24 +29,24 @@ class RoomController extends Controller
         // Create hoover to clean the area.
         $hoover = new Hoover();
         $hoover
-          ->setArea($area)
-          ->setPosition($json->get('coords'))
-          ->setInstructions($json->get('instructions'))
-          ->run();
+            ->setArea($area)
+            ->setPosition($json->get('coords'))
+            ->setInstructions($json->get('instructions'))
+            ->run();
 
         // Construct response.
         $status = 201;
         $response = [
-          'coords' => $hoover->getPosition(),
-          'patches' => $area->getPatchesCleaned(),
+            'coords' => $hoover->getPosition(),
+            'patches' => $area->getPatchesCleaned(),
         ];
 
         // Store the request input/output.
         ApiRequest::create([
-          'endpoint' => $request->getUri(),
-          'input' => json_encode($json->all()),
-          'output' => json_encode($response),
-          'status' => $status,
+            'endpoint' => $request->getUri(),
+            'input' => json_encode($json->all()),
+            'output' => json_encode($response),
+            'status' => $status,
         ]);
 
         return response()->json($response, $status);

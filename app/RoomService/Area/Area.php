@@ -104,8 +104,8 @@ class Area implements AreaInterface
         // Check that the coordinates are within the bounds of the area.
         if (!$this->validateCoordinates($coords)) {
             throw new RoomServiceValidation(sprintf('Coordinates [%s] are not valid for area [%s]',
-              $coords,
-              $this->size
+                $coords,
+                $this->size
             ));
         }
     }

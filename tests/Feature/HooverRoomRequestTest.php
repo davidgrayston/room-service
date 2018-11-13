@@ -25,39 +25,39 @@ class HooverRoomRequestTest extends TestCase
     public function hooverRoomRequestProvider()
     {
         return [
-          [
             [
-              'roomSize' => [5, 5],
-              'coords' => [1, 2],
-              'patches' => [
-                [1, 0],
-                [2, 2],
-                [2, 3],
-              ],
-              'instructions' => 'NNESEESWNWW',
+                [
+                    'roomSize' => [5, 5],
+                    'coords' => [1, 2],
+                    'patches' => [
+                        [1, 0],
+                        [2, 2],
+                        [2, 3],
+                    ],
+                    'instructions' => 'NNESEESWNWW',
+                ],
+                [
+                    'coords' => [1, 3],
+                    'patches' => 1,
+                ],
             ],
             [
-              'coords' => [1, 3],
-              'patches' => 1,
+                [
+                    'roomSize' => [2, 2],
+                    'coords' => [0, 0],
+                    'patches' => [
+                        [0, 0],
+                        [0, 1],
+                        [1, 1],
+                        [1, 0],
+                    ],
+                    'instructions' => 'NESW',
+                ],
+                [
+                    'coords' => [0, 0],
+                    'patches' => 4,
+                ],
             ],
-          ],
-          [
-            [
-              'roomSize' => [2, 2],
-              'coords' => [0, 0],
-              'patches' => [
-                [0, 0],
-                [0, 1],
-                [1, 1],
-                [1, 0],
-              ],
-              'instructions' => 'NESW',
-            ],
-            [
-              'coords' => [0, 0],
-              'patches' => 4,
-            ],
-          ],
         ];
     }
 }

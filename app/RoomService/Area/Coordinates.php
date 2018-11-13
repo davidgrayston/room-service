@@ -38,8 +38,8 @@ class Coordinates implements \JsonSerializable
         $coords = array_filter($coords, 'is_int');
         if (count($coords) !== 2) {
             throw new RoomServiceValidation(sprintf(
-              'Coordinate must be an array of 2 integer values, [%s] provided.',
-              implode(',', $coords)
+                'Coordinate must be an array of 2 integer values, [%s] provided.',
+                implode(',', $coords)
             ));
         }
     }
