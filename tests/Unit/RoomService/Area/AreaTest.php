@@ -23,8 +23,8 @@ class AreaTest extends TestCase
     {
         $area = new Area([4, 4]);
         $area->setPatches([
-          [1, 2],
-          [2, 3],
+            [1, 2],
+            [2, 3],
         ]);
         $patches = $area->getPatches();
 
@@ -32,9 +32,6 @@ class AreaTest extends TestCase
         $this->assertEquals(2, $patches['1,2']->y());
         $this->assertEquals(2, $patches['2,3']->x());
         $this->assertEquals(3, $patches['2,3']->y());
-
-        $coord = new Coordinates([1, 2]);
-        $area->cleanPatch($coord);
     }
 
     /**
@@ -50,20 +47,21 @@ class AreaTest extends TestCase
 
     /**
      * @covers ::cleanPatch
+     * @covers ::getPatchesCleaned
      */
     public function testCleanPatch()
     {
         $area = new Area([4, 4]);
         $area->setPatches([
-          [1, 2],
-          [2, 3],
+            [1, 2],
+            [2, 3],
         ]);
 
-        $area->cleanPatch(new Coordinates([1, 2]));
+        foreach ($area->getPatches() as $patch) {
+            $area->cleanPatch($patch);
+        }
 
-        $patches = $area->getPatches();
-        $this->assertFalse(isset($patches['1,2']));
-        $this->assertEquals(1, count($patches));
+        $this->assertEquals(2, $area->getPatchesCleaned());
     }
 
 }
