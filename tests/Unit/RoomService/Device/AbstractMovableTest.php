@@ -3,7 +3,6 @@
 namespace Tests\Unit\Roomservice\Device;
 
 use App\RoomService\Area\Area;
-use App\RoomService\Area\AreaInterface;
 use App\RoomService\Area\Coordinates;
 use App\RoomService\Device\AbstractMovable;
 use Tests\TestCase;
@@ -57,14 +56,17 @@ class AbstractMovableTest extends TestCase
      * @covers ::run
      * @dataProvider setInstructionsProvider
      */
-    public function testSetInstructions($areaSize, $position, $instructions, $finalPosition)
+    public function testSetInstructions($area_size, $position, $instructions, $final_position, $operation_count)
     {
+        $this->movable->expects($this->exactly($operation_count))
+            ->method('operate');
+
         $this->movable
-            ->setArea(new Area($areaSize))
+            ->setArea(new Area($area_size))
             ->setPosition($position)
             ->setInstructions($instructions)
             ->run();
-        $this->assertEquals(new Coordinates($finalPosition), $this->movable->getPosition());
+        $this->assertEquals(new Coordinates($final_position), $this->movable->getPosition());
     }
 
     /**
@@ -78,18 +80,21 @@ class AbstractMovableTest extends TestCase
                 [0, 0],
                 'NESW',
                 [0, 0],
+                5,
             ],
             [
                 [10, 10],
                 [0, 0],
                 'NENENENENESESE',
                 [7, 3],
+                15,
             ],
             [
                 [20, 20],
                 [5, 5],
                 'NNNNNNNNNNNNNNNEEEEE',
                 [10, 19],
+                20
             ]
         ];
     }
