@@ -3,6 +3,8 @@
 namespace Tests\Unit\Roomservice\Device;
 
 use App\RoomService\Area\Area;
+use App\RoomService\Area\AreaInterface;
+use App\RoomService\Area\Coordinates;
 use App\RoomService\Device\AbstractMovable;
 use Tests\TestCase;
 
@@ -22,7 +24,8 @@ class AbstractMovableTest extends TestCase
     /**
      * Setup test objects.
      */
-    public function setup() {
+    public function setup()
+    {
         $this->movable = $this->getMockForAbstractClass(AbstractMovable::class);
     }
 
@@ -45,5 +48,49 @@ class AbstractMovableTest extends TestCase
     public function testGetAreaException()
     {
         $this->movable->getArea();
+    }
+
+    /**
+     * @covers ::setInstructions
+     * @covers ::getPosition
+     * @covers ::getPosition
+     * @covers ::run
+     * @dataProvider setInstructionsProvider
+     */
+    public function testSetInstructions($areaSize, $position, $instructions, $finalPosition)
+    {
+        $this->movable
+            ->setArea(new Area($areaSize))
+            ->setPosition($position)
+            ->setInstructions($instructions)
+            ->run();
+        $this->assertEquals(new Coordinates($finalPosition), $this->movable->getPosition());
+    }
+
+    /**
+     * Data provider for instructions test.
+     */
+    public function setInstructionsProvider()
+    {
+        return [
+            [
+                [2, 2],
+                [0, 0],
+                'NESW',
+                [0, 0],
+            ],
+            [
+                [10, 10],
+                [0, 0],
+                'NENENENENESESE',
+                [7, 3],
+            ],
+            [
+                [20, 20],
+                [5, 5],
+                'NNNNNNNNNNNNNNNEEEEE',
+                [10, 19],
+            ]
+        ];
     }
 }
