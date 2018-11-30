@@ -1,0 +1,8 @@
+# PHP CircleCI 2.0 configuration file
+version: 2
+jobs:
+  build:
+    steps:
+      - checkout
+      - run: make install
+      - run: make test
