@@ -1,4 +1,6 @@
 jobs:
   include:
-    - script: make install
-    - script: make test
+    - name: build
+      script: make install
+    - name: test
+      script: make test
