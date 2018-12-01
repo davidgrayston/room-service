@@ -40,7 +40,7 @@ class HooverRoomRequestTest extends TestCase
                     'coords' => [1, 3],
                     'patches' => 1,
                 ],
-                201,
+                200,
             ],
             [
                 [
