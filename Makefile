@@ -3,7 +3,7 @@ install:
 	cp .env.roomservice .env
 	docker-compose up -d
 	docker-compose exec app php artisan key:generate
-	sleep 5
+	sleep 10
 	docker-compose exec app php artisan migrate
 
 up:
