@@ -2,5 +2,4 @@ jobs:
   include:
     - stage: build
       script: make install
-    - stage: test
-      script: make test
+    - script: make test
