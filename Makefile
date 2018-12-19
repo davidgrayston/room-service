@@ -2,9 +2,9 @@ install:
 	docker run --rm -v "$(PWD):/app" composer install
 	cp .env.roomservice .env
 	docker-compose up -d
-	docker-compose exec app php artisan key:generate
+	docker-compose exec -T app php artisan key:generate
 	sleep 10
-	docker-compose exec app php artisan migrate
+	docker-compose exec -T app php artisan migrate
 
 up:
 	docker-compose up -d
@@ -16,4 +16,4 @@ update:
 	docker run --rm -v "$(PWD):/app" composer update
 
 test:
-	docker-compose exec app php ./vendor/bin/phpunit
+	docker-compose exec -T app php ./vendor/bin/phpunit
