@@ -1,0 +1,14 @@
+image: docker:latest
+
+services:
+  - docker:dind
+
+before_script:
+  - apk add --update make
+  - apk add --no-cache py-pip
+  - pip install docker-compose
+
+test:
+  script:
+    - make install
+    - make test
