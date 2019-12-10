@@ -5,7 +5,7 @@ info:
   license:
     name: MIT
 servers:
-  - url: http://localhost:8080/api
+  - url: /api
 paths:
   /room/hoover:
     post:
