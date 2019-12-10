@@ -42,13 +42,29 @@ class RoomController extends Controller
         ];
 
         // Store the request input/output.
+        $this->storeApiRequest($request, $response, $status);
+
+        return response()->json($response, $status);
+    }
+
+    /**
+     * Store the request input/output.
+     *
+     * @param Request $request
+     * @param array $response
+     * @param int $status
+     */
+    private function storeApiRequest(Request $request, $response, $status)
+    {
+        if (env('APP_STORE_API_REQUESTS', true) === false) {
+            return;
+        }
+
         ApiRequest::create([
             'endpoint' => $request->getUri(),
-            'input' => json_encode($json->all()),
+            'input' => json_encode($request->json()->all()),
             'output' => json_encode($response),
             'status' => $status,
         ]);
-
-        return response()->json($response, $status);
     }
 }
