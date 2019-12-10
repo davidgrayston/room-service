@@ -16,8 +16,8 @@ class CreateApiRequestsTable extends Migration
         Schema::create('api_requests', function (Blueprint $table) {
             $table->increments('id');
             $table->string('endpoint');
-            $table->json('input');
-            $table->json('output');
+            $table->longText('input');
+            $table->longText('output');
             $table->integer('status');
             $table->timestamps();
         });
