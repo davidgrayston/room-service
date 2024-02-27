@@ -1,4 +1,4 @@
-FROM php:7.2.11-fpm
+FROM php:8.3-fpm
 
-RUN apt-get update && apt-get install -y mysql-client --no-install-recommends \
+RUN apt-get update \
     && docker-php-ext-install pdo_mysql
