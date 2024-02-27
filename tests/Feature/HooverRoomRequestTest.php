@@ -22,7 +22,7 @@ class HooverRoomRequestTest extends TestCase
     /**
      * Data provider for hoover requests.
      */
-    public function hooverRoomRequestProvider()
+    public static function hooverRoomRequestProvider()
     {
         return [
             [

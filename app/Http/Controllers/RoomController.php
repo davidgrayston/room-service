@@ -23,14 +23,14 @@ class RoomController extends Controller
         $json = $request->json();
 
         // Create area to be cleaned.
-        $area = new Area($json->get('roomSize'));
-        $area->setPatches($json->get('patches'));
+        $area = new Area($json->all('roomSize'));
+        $area->setPatches($json->all('patches'));
 
         // Create hoover to clean the area.
         $hoover = new Hoover();
         $hoover
             ->setArea($area)
-            ->setPosition($json->get('coords'))
+            ->setPosition($json->all('coords'))
             ->setInstructions($json->get('instructions'))
             ->run();
 

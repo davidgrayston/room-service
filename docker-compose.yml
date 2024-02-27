@@ -29,7 +29,7 @@ services:
 
   # The Database
   database:
-    image: mariadb:10.3.10-bionic
+    image: mariadb:10.11-jammy
     volumes:
       - dbdata:/var/lib/mysql
     environment:

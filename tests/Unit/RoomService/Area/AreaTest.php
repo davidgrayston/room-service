@@ -2,6 +2,7 @@
 
 namespace Tests\Unit\Roomservice\Area;
 
+use App\Exceptions\RoomServiceValidation;
 use App\RoomService\Area\Coordinates;
 use App\RoomService\Area\Area;
 use Tests\TestCase;
@@ -14,7 +15,6 @@ use Tests\TestCase;
  */
 class AreaTest extends TestCase
 {
-
     /**
      * @covers ::getPatches
      * @covers ::setPatches
@@ -36,11 +36,12 @@ class AreaTest extends TestCase
 
     /**
      * @covers ::assertValidCoordinates
-     * @expectedException \App\Exceptions\RoomServiceValidation
-     * @expectedExceptionMessage Coordinates [5,2] are not valid for area [4,4]
      */
     public function testCoordinateException()
     {
+        $this->expectException(RoomServiceValidation::class);
+        $this->expectExceptionMessage('Coordinates [5,2] are not valid for area [4,4]');
+
         $area = new Area([4, 4]);
         $area->assertValidCoordinates(new Coordinates([5, 2]));
     }
