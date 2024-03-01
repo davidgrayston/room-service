@@ -1,4 +1,5 @@
 # Room Service
+![CI](https://github.com/davidgrayston/room-service/actions/workflows/test.yml/badge.svg)
 
 Service that navigates an imaginary robotic hoover through an imaginary room.
 
